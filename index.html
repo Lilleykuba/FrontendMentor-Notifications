@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Notifications page</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+    main {
+      background-color: hsl(210, 60%, 98%);
+      min-height: 100vh;
+      min-width: 100vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .container {
+      background-color: white;
+      color: hsl(219, 12%, 42%);
+      width: 60vw;
+      border-radius: 1em;
+      padding: 1em;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+    }
+    .header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-bottom: 1em;
+    }
+    .Notifications {
+      color: hsl(224, 21%, 14%);
+    }
+    .notifNum {
+      background-color: hsl(219, 85%, 26%);
+      color: white;
+      border-radius: 0.5em;
+      padding: 0.1em 0.6em 0.1em 0.6em;
+    }
+    .markAll {
+      text-align: right;
+      color: hsl(219, 12%, 42%);
+    }
+    .content {
+      display: flex;
+      flex-direction: column;
+    }
+    .notif {
+      display: grid;
+      margin: 0.2em;
+      width: 100%;
+      justify-content: flex-start;
+    }
+    .notRead {
+      border-radius: 1em;
+      background-color: hsl(210, 60%, 98%);
+    }
+    .item1 {
+      display: flex;
+      justify-content: flex-start;
+    }
+    .item2.children {
+      display: flex;
+      justify-content: flex-start;
+    }
+    .item3 {
+      grid-column: 2;
+      margin: -1em 0 0.25em 0;
+      display: flex;
+    }
+    .item4 {
+      grid-column: 2;
+      margin: 0 0 0.25em 0;
+      border: 1px solid hsl(205, 33%, 90%);
+      padding: 1em;
+    }
+    .name {
+      font-weight: bold;
+      color: hsl(224, 21%, 14%);
+    }
+    .post{
+      font-weight: bold;
+      color: hsl(219, 12%, 42%);
+    }
+    .club {
+      color: hsl(219, 85%, 26%);
+      font-weight: bold;
+    }
+    img {
+      width: 2.5em;
+      height: 2.5em;
+      margin: 1em;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <div class="container">
+      <div class="header">
+        <div class="Notifications">
+          <strong>Notifications <span class="notifNum">3</span></strong>
+        </div>
+        <div class="markAll">
+          Mark all as read
+        </div>
+      </div>
+      <div class="content">
+        <div class="notif notRead" id="Mark">
+          <img class="item1" alt="Mark profile picture" src="assets/images/avatar-mark-webber.webp">
+          <p class="item2"><span class="name">Mark&nbsp;Webber</span>&nbsp;reacted to your recent post <span class="post">My first tournament today!</span></p>
+          <p class="item3">1m ago</p>
+        </div>
+        <div class="notif notRead" id="Angela">
+          <img class="item1" alt="Angela profile picture" src="assets/images/avatar-angela-gray.webp">
+          <p class="item2"><span class="name">Angela&nbsp;Gray</span>&nbsp;followed you</p>
+          <p class="item3">5m ago</p>
+        </div>
+        <div class="notif notRead" id="Jacob">
+          <img class="item1" alt="Jacob profile picture" src="assets/images/avatar-jacob-thompson.webp">
+          <p class="item2"><span class="name">Jacob&nbsp;Thompson</span>&nbsp;has joined your group <span class="club">Chess Club</span></p>
+          <p class="item3">1 day ago</p>
+        </div>
+        <div class="notif" id="Rizky">
+          <img class="item1" alt="Rizky profile picture" src="assets/images/avatar-rizky-hasanuddin.webp">
+          <p class="item2"><span class="name">Rizky&nbsp;Hasanuddin</span>&nbsp;sent you a private message</p>
+          <p class="item3">5 days ago</p>
+          <p class="item4">Hello, thanks for setting up the Chess Club. I've been a member for a few weeks now and 
+            I'm already having lots of fun and improving my game.</p>
+        </div>
+        <div class="notif" id="Kimberly">
+          <img class="item1" alt="Kimberly profile picture" src="assets/images/avatar-kimberly-smith.webp">
+          <p class="item2"><span class="name">Kimberly&nbsp;Smith</span>&nbsp;commented on your picture</p>
+          <p class="item3">1 week ago</p>
+        </div>
+        <div class="notif" id="Nathan">
+          <img class="item1" alt="Nathan profile picture" src="assets/images/avatar-nathan-peterson.webp">
+          <p class="item2"><span class="name">Nathan&nbsp;Peterson</span>&nbsp;reacted to your recent post <span class="post">5 end-game strategies to increase your win rate</span></p>
+          <p class="item3">2 weeks ago</p>
+        </div>
+        <div class="notif" id="Anna">
+          <img class="item1" alt="Anna profile picture" src="assets/images/avatar-anna-kim.webp">
+          <p class="item2"><span class="name">Anna&nbsp;Kim</span>&nbsp;left the group <span class="club">Chess Club</span></p>
+          <p class="item3">2 weeks ago</p>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <div class="attribution">
+      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+      Coded by <a href="#">Your Name Here</a>.
+    </div>
+  </footer>
+</body>
+</html>
