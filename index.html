@@ -23,7 +23,7 @@
     .container {
       background-color: white;
       color: hsl(219, 12%, 42%);
-      width: 60vw;
+      max-width: 60vw;
       border-radius: 1em;
       padding: 1em;
       display: flex;
@@ -49,50 +49,74 @@
       text-align: right;
       color: hsl(219, 12%, 42%);
     }
+    .markAll:hover{
+      color: hsl(219, 85%, 26%);
+      cursor: pointer;
+    }
     .content {
       display: flex;
       flex-direction: column;
     }
     .notif {
       display: grid;
-      margin: 0.2em;
-      width: 100%;
-      justify-content: flex-start;
+      grid-template-areas: 'img head head pic'
+  					               'img time time pic'
+                           '. msg msg pic';
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      align-items: center;
+      margin: 0.25em;
+      padding: 0.25em;
+      justify-content: start;
     }
     .notRead {
       border-radius: 1em;
       background-color: hsl(210, 60%, 98%);
     }
     .item1 {
-      display: flex;
-      justify-content: flex-start;
+      grid-area: img;
     }
-    .item2.children {
-      display: flex;
-      justify-content: flex-start;
+    .item2 {
+      grid-area: head;
+      margin: 0;
     }
     .item3 {
-      grid-column: 2;
-      margin: -1em 0 0.25em 0;
-      display: flex;
+      grid-area: time;
+      margin: 0;
+      align-self: start;
     }
     .item4 {
-      grid-column: 2;
-      margin: 0 0 0.25em 0;
+      grid-area: msg;
+      margin: 0;
       border: 1px solid hsl(205, 33%, 90%);
       padding: 1em;
+    }
+    .item5 {
+      grid-area: pic;
+      justify-self: end;
     }
     .name {
       font-weight: bold;
       color: hsl(224, 21%, 14%);
+      cursor: pointer;
     }
-    .post{
+    .post, .club {
       font-weight: bold;
-      color: hsl(219, 12%, 42%);
-    }
-    .club {
       color: hsl(219, 85%, 26%);
-      font-weight: bold;
+      cursor: pointer;
+    }
+    .msg:hover {
+      cursor: pointer;
+      background-color: hsl(211, 68%, 94%);
+    }
+    .dot {
+      height: 0.5em;
+      width: 0.5em;
+      background-color: red;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .pic {
+      cursor: pointer;
     }
     img {
       width: 2.5em;
@@ -107,39 +131,40 @@
     <div class="container">
       <div class="header">
         <div class="Notifications">
-          <strong>Notifications <span class="notifNum">3</span></strong>
+          <strong>Notifications <span class="notifNum" id="notifNum">3</span></strong>
         </div>
-        <div class="markAll">
+        <div class="markAll" id="markAll">
           Mark all as read
         </div>
       </div>
       <div class="content">
         <div class="notif notRead" id="Mark">
           <img class="item1" alt="Mark profile picture" src="assets/images/avatar-mark-webber.webp">
-          <p class="item2"><span class="name">Mark&nbsp;Webber</span>&nbsp;reacted to your recent post <span class="post">My first tournament today!</span></p>
+          <p class="item2"><span class="name">Mark&nbsp;Webber</span>&nbsp;reacted to your recent post <span class="post">My first tournament today!</span>&nbsp;<span class="new"></span></p>
           <p class="item3">1m ago</p>
         </div>
         <div class="notif notRead" id="Angela">
           <img class="item1" alt="Angela profile picture" src="assets/images/avatar-angela-gray.webp">
-          <p class="item2"><span class="name">Angela&nbsp;Gray</span>&nbsp;followed you</p>
+          <p class="item2"><span class="name">Angela&nbsp;Gray</span>&nbsp;followed you&nbsp;<span class="new"></span></p>
           <p class="item3">5m ago</p>
         </div>
         <div class="notif notRead" id="Jacob">
           <img class="item1" alt="Jacob profile picture" src="assets/images/avatar-jacob-thompson.webp">
-          <p class="item2"><span class="name">Jacob&nbsp;Thompson</span>&nbsp;has joined your group <span class="club">Chess Club</span></p>
+          <p class="item2"><span class="name">Jacob&nbsp;Thompson</span>&nbsp;has joined your group <span class="club">Chess Club</span>&nbsp;<span class="new"></span></p>
           <p class="item3">1 day ago</p>
         </div>
         <div class="notif" id="Rizky">
           <img class="item1" alt="Rizky profile picture" src="assets/images/avatar-rizky-hasanuddin.webp">
           <p class="item2"><span class="name">Rizky&nbsp;Hasanuddin</span>&nbsp;sent you a private message</p>
           <p class="item3">5 days ago</p>
-          <p class="item4">Hello, thanks for setting up the Chess Club. I've been a member for a few weeks now and 
+          <p class="item4 msg">Hello, thanks for setting up the Chess Club. I've been a member for a few weeks now and 
             I'm already having lots of fun and improving my game.</p>
         </div>
         <div class="notif" id="Kimberly">
           <img class="item1" alt="Kimberly profile picture" src="assets/images/avatar-kimberly-smith.webp">
           <p class="item2"><span class="name">Kimberly&nbsp;Smith</span>&nbsp;commented on your picture</p>
           <p class="item3">1 week ago</p>
+          <img class="item5 pic" alt="New picture" src="assets/images/image-chess.webp">
         </div>
         <div class="notif" id="Nathan">
           <img class="item1" alt="Nathan profile picture" src="assets/images/avatar-nathan-peterson.webp">
@@ -160,5 +185,28 @@
       Coded by <a href="#">Your Name Here</a>.
     </div>
   </footer>
+  <script>
+    let newMsg = document.getElementsByClassName("new");
+    let notRead = document.getElementsByClassName("notif");
+
+    for (let i = 0; i < newMsg.length; i++) {
+      newMsg[i].classList.add("dot");
+      let notifNumber = i;
+    }
+
+    document.getElementById("markAll").addEventListener("click", markRead)
+
+    function markRead() {
+      for (let i = 0; i < newMsg.length; i++) {
+        newMsg[i].classList.remove("dot");
+      }
+      for (let j = 0; j < notRead.length; j++) {
+        notRead[j].classList.remove("notRead");
+        console.log(notRead[j]);
+      }
+      notifNumber = 0;
+      document.getElementById("notifNum").innerText = notifNumber;
+    }
+  </script>
 </body>
 </html>
